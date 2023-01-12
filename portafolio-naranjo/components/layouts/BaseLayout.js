@@ -1,4 +1,4 @@
-import Header from '../share/Header';
+import Header from '@/components/share/Header';
 
 const BaseLayout = props => {
   const { className, children } = props;

@@ -1,10 +1,13 @@
 
-import BaseLayout from "../components/layouts/BaseLayout";
+import BaseLayout from "@/components/layouts/BaseLayout";
+import BasePage from "@/components/BasePage";
 
 const Cv = () => {
     return (
     <BaseLayout>
-        <h1>Soy la pagina CV</h1>
+        <BasePage>
+            <h1>Soy la pagina CV</h1>
+        </BasePage>
     </BaseLayout>
     )
   };
