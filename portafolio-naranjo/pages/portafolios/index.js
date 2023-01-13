@@ -2,16 +2,18 @@
 import BaseLayout from "@/components/layouts/BaseLayout";
 import BasePage from "@/components/BasePage";
 import Link from "next/link";
-import { useGetPosts } from "@/actions";
+// import { useGetData } from "@/actions";
+import useSWR from 'swr'
 
 
 
+const fetcher = (url)=> fetch(url).then(res => res.json());
 
 const Portafolio = () => {
-    const { posts ,error, loading} = useGetPosts();
+    const { data ,error} = useSWR('/api/v1/posts', fetcher);
     
     const renderPosts = () => {
-        return posts.map(post => <li key={post.id}>
+        return data.map(post => <li key={post.id}>
             <Link href={`/portafolios/${post.id}`}>
                 {post.title}
             </Link>
@@ -23,13 +25,9 @@ const Portafolio = () => {
         <BasePage>
             <h1>Soy la pagina Portafolio</h1>
             {
-                loading &&
-                <p className="alert alert-danger">Cargando...</p>
-            }
-            {
-                posts &&
+                data &&
                 <ul>
-                    {renderPosts(posts)}
+                    {renderPosts(data)}
                 </ul>
             }
             {
